@@ -1,10 +1,16 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
+#include <ESP8266WiFiMulti.h>
+
+ESP8266WiFiMulti WiFiMulti;
+const char fingerprint[] PROGMEM =  "31 B5 D0 C3 74 CC 25 98 7F 67 32 9D DE FE 5149 E9 AD 8C D1";
+char json[400] = {0};
+StaticJsonDocument<256> doc;
 
 void setup() {
     
   const char* ssid = "Repetidor-Multilaser";
-  const char* password = "pateta9903";
+  const char* password = "";
 
   Serial.begin(115200);
   int i = 0;
