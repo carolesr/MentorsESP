@@ -16,7 +16,7 @@ void setup() {
   pinMode(Led, OUTPUT);
   RFID.begin(9600);
   
-  const char* ssid = "Repetidor-Multilaser";
+  const char* ssid = "ROSA_2G_Rep";
   const char* password = "";
   
   WiFi.begin(ssid, password);
@@ -42,11 +42,9 @@ void loop() {
                 code = code + String(Payload[i]);
             }
             
-            http.begin("http://cinqbreak.herokuapp.com/api/User/Create");
+            http.begin("http://cinqbreak.herokuapp.com/api/User/VerifyUser");
             http.addHeader("Content-Type", "application/json");
-            String data = "{\"idCard\":";
-            data = data + code;
-            data = data + ",\"username\":\"test2_sensor\"}";
+            String data = code;
             int httpCode = http.POST(data);
 
             http.end();

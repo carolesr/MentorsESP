@@ -1,15 +1,9 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
-#include <ESP8266WiFiMulti.h>
-
-ESP8266WiFiMulti WiFiMulti;
-const char fingerprint[] PROGMEM =  "31 B5 D0 C3 74 CC 25 98 7F 67 32 9D DE FE 5149 E9 AD 8C D1";
-char json[400] = {0};
-StaticJsonDocument<256> doc;
 
 void setup() {
     
-  const char* ssid = "Repetidor-Multilaser";
+  const char* ssid = "ROSA_2G_Rep";
   const char* password = "";
 
   Serial.begin(115200);
@@ -35,11 +29,12 @@ void loop() {
     if (WiFi.status() == WL_CONNECTED){
         HTTPClient http;
 
-        String data = "{\"idCard\":1001,\"username\":\"esp\"}";
+        //String data = "{\"idCard\":100,\"username\":\"esp_teste\"}";
+        String data = "555";
         Serial.println(data);
-        String url = "http://cinqbreak.herokuapp.com/api/User/Create";
+        String url = "http://cinqbreak.herokuapp.com/api/User/VerifyUser";
         Serial.println(url);
-        http.begin("http://cinqbreak.herokuapp.com/api/User/Create");
+        http.begin("http://cinqbreak.herokuapp.com/api/User/VerifyUser");
         //int httpCode = http.GET();
         http.addHeader("Content-Type", "application/json");
         int httpCode = http.POST(data);
